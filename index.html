@@ -1,117 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PACE 3 COROS</title>
-  <link rel="stylesheet" href="style.css" />
-
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #f9f9f9;
-      color: #000;
-    }
-
-    .contact-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px;
-      gap: 40px;
-    }
-
-    .contact-left {
-      max-width: 500px;
-      width: 100%;
-    }
-
-    .contact-left-title h2 {
-      margin-bottom: 10px;
-    }
-
-    .contact-inputs {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-      color: #000;
-      background-color: #fff;
-    }
-
-    .contact-inputs::placeholder {
-      color: #888;
-    }
-
-    button[type="submit"] {
-      padding: 12px 20px;
-      border: none;
-      background-color: #000;
-      color: #fff;
-      cursor: pointer;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    button[type="submit"] img {
-      width: 16px;
-      height: 16px;
-    }
-
-    .contact-right img {
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-    }
-  </style>
-
-
-  <script>
-    function confirmSubmit(event) {
-      const userConfirmed = confirm("Do you want to buy?");
-      if (!userConfirmed) {
-        event.preventDefault();
-      }
-    }
-  </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PACE 3 COROS</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="contact-container">
-    <form 
-      action="https://api.web3forms.com/submit" 
-      method="POST" 
-      class="contact-left" 
-      onsubmit="confirmSubmit(event)"
-    >
-      <div class="contact-left-title">
-        <h2>PACE 3 COROS</h2>
-        <hr>
-      </div>
-
-      <input type="hidden" name="access_key" value="96b58191-9cc0-4359-92d3-5de19cec583a">
-
-      <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
-      <input type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
-
-      <textarea 
-        name="message" 
-        placeholder="Your Information&#10;Location:&#10;Number:&#10;Etc." 
-        class="contact-inputs" 
-        required
-      ></textarea>
-
-      <button type="submit" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
-        Submit <img src="assets/arrow_icon.png" alt="Arrow Icon">
-      </button>
-    </form>
-
-    <div class="contact-right">
-      <img src="assets/relo.png" alt="PACE 3 Watch">
+    <div class="contact-container">
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+            <div class="contact-left-title">
+                <h2>PACE 3 COROS</h2>
+                <hr />
+            </div>
+            <input type="hidden" name="access_key" value="96b58191-9cc0-4359-92d3-5de19cec583a" />
+            <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required />
+            <input type="email" name="email" placeholder="Your Email" class="contact-inputs" required />
+            <textarea
+                name="message"
+                placeholder="Your Information                                                                           Location:                                        Number:                                              Etc,"
+                class="contact-inputs"
+                required
+            ></textarea>
+            <button type="submit" class="submit-btn">
+                Submit <img src="assets/arrow_icon.png" alt="Arrow icon" />
+            </button>
+        </form>
+        <div class="contact-right">
+            <img src="assets/relo.png" alt="Contact image" />
+        </div>
     </div>
-  </div>
+
+
+    <div id="customConfirm">
+        <div class="modal-content">
+            <p>Do you want to buy?</p>
+            <button id="yesBtn">Yes, I will buy it.</button>
+            <button id="noBtn">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const confirmModal = document.getElementById('customConfirm');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            confirmModal.style.display = 'flex';
+        });
+
+        yesBtn.addEventListener('click', function () {
+            confirmModal.style.display = 'none';
+            form.submit();
+        });
+
+        noBtn.addEventListener('click', function () {
+            confirmModal.style.display = 'none';
+        });
+
+        confirmModal.addEventListener('click', function (e) {
+            if (e.target === confirmModal) {
+                confirmModal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
