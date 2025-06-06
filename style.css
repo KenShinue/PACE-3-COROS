@@ -145,12 +145,12 @@ body {
     color: white;
 }
 #yesBtn:hover {
-    background-color: #218838;
+    background-color: #034b12;
 }
 #noBtn {
     background-color: #dc3545;
     color: white;
 }
 #noBtn:hover {
-    background-color: #c82333;
+    background-color: #52070e;
 }
